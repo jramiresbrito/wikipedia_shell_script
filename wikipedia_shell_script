@@ -3,6 +3,7 @@ require 'open-uri'
 require 'nokogiri'
 
 url = ARGV[0]
+raise "Please inform a URL" if url.nil?
 doc = Nokogiri::HTML(open(url).read)
 doc.css('.reference').each(&:remove)
 puts doc.css('p').map(&:content).join
